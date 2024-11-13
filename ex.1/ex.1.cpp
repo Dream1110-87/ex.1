@@ -1,36 +1,35 @@
 ﻿#include <iostream>
 using namespace std;
 
+// 遞迴方式計算階乘
+long long factorialRecursive(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    return n * factorialRecursive(n - 1);
+}
+
+// 非遞迴方式計算階乘
+long long factorialIterative(int n) {
+    long long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
 int main() {
     int n;
-    cout << "請輸入一個正整數 n: ";
+    cout << "請輸入一個非負整數 n: ";
     cin >> n;
 
-    // 使用 for 迴圈
-    int sumFor = 0;
-    for (int i = 2; i <= n; i += 2) {
-        sumFor += i;
+    if (n < 0) {
+        cout << "請輸入非負整數。" << endl;
     }
-    cout << "使用 for 迴圈的偶數和: " << sumFor << endl;
-
-    // 使用 while 迴圈
-    int sumWhile = 0;
-    int i = 2;
-    while (i <= n) {
-        sumWhile += i;
-        i += 2;
+    else {
+        cout << "遞迴方式計算的階乘 " << n << "! = " << factorialRecursive(n) << endl;
+        cout << "非遞迴方式計算的階乘 " << n << "! = " << factorialIterative(n) << endl;
     }
-    cout << "使用 while 迴圈的偶數和: " << sumWhile << endl;
-
-    // 使用 do-while 迴圈
-    int sumDoWhile = 0;
-    i = 2;
-    do {
-        if (i > n) break;  // 檢查避免超過 n
-        sumDoWhile += i;
-        i += 2;
-    } while (i <= n);
-    cout << "使用 do-while 迴圈的偶數和: " << sumDoWhile << endl;
 
     return 0;
 }
